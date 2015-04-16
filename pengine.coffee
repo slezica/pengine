@@ -10,6 +10,7 @@ captureStack = ->
 class Pengine
   Pengine.defaults =
     limit: 2
+    trace: true
 
   constructor: (options = {}) ->
     @options = extend({}, Pengine.defaults, options)
@@ -32,6 +33,8 @@ class Pengine
     undefined
 
   run: (task) ->
+    stack = if @options.trace then captureStack() else ""
+
     new Promise (accept, reject) =>
       @pending.push({ task, accept, reject })
       @spawn()

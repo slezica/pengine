@@ -1,5 +1,11 @@
-Promise    = require 'bluebird'
-{ extend } = require('lodash')
+Promise = require 'bluebird'
+
+
+merge = (objects...) ->
+  base = {}
+  for object in objects
+    base[key] = object[key] for own key of object
+  base
 
 
 captureStack = ->
@@ -9,11 +15,12 @@ captureStack = ->
 
 class Pengine
   Pengine.defaults =
-    limit: 2
-    trace: true
+    limit  : 10
+    trace  : true
+    forward: null
 
   constructor: (options = {}) ->
-    @options = extend({}, Pengine.defaults, options)
+    @options = merge(Pengine.defaults, options)
     @pending = []
     @running = 0
 
@@ -35,13 +42,18 @@ class Pengine
   run: (task) ->
     stack = if @options.trace then captureStack() else ""
 
-    new Promise (accept, reject) =>
-      @pending.push({ task, accept, reject })
-      @spawn()
+    if @options.forward?
+      @options.forward.run(task)
 
-    .catch (error) ->
-      error.stack = "#{error.stack}\n#{stack}"
-      throw error
+    else
+      new Promise (accept, reject) =>
+        else
+          @pending.push({ task, accept, reject })
+          @spawn()
+
+      .catch (error) ->
+        error.stack = "#{error.stack}\n#{stack}"
+        throw error
 
   map: (array, f, $each = ->) ->
     @reduce(array, (results, item) ->

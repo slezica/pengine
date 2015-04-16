@@ -1,11 +1,18 @@
 {
   "name": "pengine",
-  "version": "0.0.1",
-  "description": "Promise execution engine",
-  "main": "src/pengine.js",
+  "version": "0.1.0",
+  "description": "Powerful Promise execution engine",
+  "main": "lib/pengine.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "make"
   },
   "author": "Santiago Lezica",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^2.9.24"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:slezica/pengine.git"
+  },
 }

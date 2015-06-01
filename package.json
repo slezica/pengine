@@ -3,16 +3,14 @@
   "version": "0.1.0",
   "description": "Powerful Promise execution engine",
   "main": "lib/pengine.js",
-  "scripts": {
-    "prepublish": "make"
-  },
   "author": "Santiago Lezica",
   "license": "MIT",
+  "files": ["lib"],
   "dependencies": {
     "bluebird": "^2.9.24"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:slezica/pengine.git"
-  },
+  }
 }

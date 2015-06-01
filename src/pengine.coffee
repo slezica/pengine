@@ -47,9 +47,8 @@ class Pengine
 
     else
       new Promise (accept, reject) =>
-        else
-          @pending.push({ task, accept, reject })
-          @spawn()
+        @pending.push({ task, accept, reject })
+        @spawn()
 
       .catch (error) ->
         error.stack = "#{error.stack}\n#{stack}"

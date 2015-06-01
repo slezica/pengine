@@ -1,6 +1,6 @@
 {
   "name": "pengine",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Powerful Promise execution engine",
   "main": "lib/pengine.js",
   "author": "Santiago Lezica",
